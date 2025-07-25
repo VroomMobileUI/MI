@@ -25,7 +25,10 @@ export default function MobileProductCard({ product, variant = "full" }: MobileP
 
   if (variant === "grid") {
     return (
-      <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+      <div 
+        className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 cursor-pointer hover:shadow-lg transition-shadow"
+        onClick={() => window.location.href = `/product/${product.id}`}
+      >
         <div className="relative">
           <img 
             src={product.imageUrl} 
@@ -38,7 +41,10 @@ export default function MobileProductCard({ product, variant = "full" }: MobileP
             </div>
           )}
           <button 
-            onClick={handleAddToCart}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAddToCart();
+            }}
             disabled={isAdding}
             className="absolute bottom-2 right-2 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
           >
@@ -65,7 +71,8 @@ export default function MobileProductCard({ product, variant = "full" }: MobileP
   return (
     <motion.div 
       whileHover={{ y: -2 }}
-      className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200"
+      className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 cursor-pointer"
+      onClick={() => window.location.href = `/product/${product.id}`}
     >
       <div className="relative">
         <img 
@@ -79,7 +86,10 @@ export default function MobileProductCard({ product, variant = "full" }: MobileP
           </div>
         )}
         <button 
-          onClick={handleAddToCart}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleAddToCart();
+          }}
           disabled={isAdding}
           className="absolute bottom-3 right-3 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
         >

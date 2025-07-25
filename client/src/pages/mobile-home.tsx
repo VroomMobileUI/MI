@@ -97,7 +97,13 @@ export default function MobileHome() {
               className="md:hidden text-black"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {isMenuOpen ? <X size={24} /> : (
+                <div className="space-y-1">
+                  <div className="w-5 h-0.5 bg-black"></div>
+                  <div className="w-5 h-0.5 bg-black"></div>
+                  <div className="w-5 h-0.5 bg-black"></div>
+                </div>
+              )}
             </button>
             
             <div className="flex-1 text-center">
@@ -108,7 +114,10 @@ export default function MobileHome() {
               <button className="text-black">
                 <Search size={20} />
               </button>
-              <button className="relative text-black">
+              <button 
+                className="relative text-black"
+                onClick={() => window.location.href = '/cart'}
+              >
                 <ShoppingCart size={20} />
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
@@ -123,31 +132,40 @@ export default function MobileHome() {
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
           <motion.div 
-            initial={{ x: "-100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
-            className="fixed inset-0 bg-white z-40 top-14"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 top-14"
+            onClick={() => setIsMenuOpen(false)}
           >
-            <div className="p-6 space-y-6">
-              <div className="space-y-4">
-                <a href="#" className="block text-lg font-medium text-black border-b border-gray-200 pb-4">HOME</a>
-                <a href="#" className="block text-lg font-medium text-gray-600 border-b border-gray-200 pb-4">STORE</a>
-                <a href="#" className="block text-lg font-medium text-gray-600 border-b border-gray-200 pb-4">COMMUNITY</a>
-                <a href="#" className="block text-lg font-medium text-gray-600 border-b border-gray-200 pb-4">CONTACT</a>
-              </div>
-              
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <div className="flex items-center space-x-2 text-gray-600">
-                  <span>🧍‍♂️</span>
-                  <span>LOGIN</span>
+            <motion.div 
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              className="bg-white w-80 h-full shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-6 space-y-6">
+                <div className="space-y-4">
+                  <a href="/" className="block text-lg font-medium text-orange-600 border-b border-gray-200 pb-4">HOME</a>
+                  <a href="/products" className="block text-lg font-medium text-gray-600 border-b border-gray-200 pb-4">STORE</a>
+                  <a href="#" className="block text-lg font-medium text-gray-600 border-b border-gray-200 pb-4">COMMUNITY</a>
+                  <a href="#" className="block text-lg font-medium text-gray-600 border-b border-gray-200 pb-4">CONTACT</a>
                 </div>
                 
-                <div className="mt-4 flex items-center space-x-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India" className="w-5 h-3" />
-                  <span className="text-sm text-gray-600">INR ₹</span>
+                <div className="mt-8 pt-8 border-t border-gray-200">
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <span>👤</span>
+                    <span>LOGIN</span>
+                  </div>
+                  
+                  <div className="mt-4 flex items-center space-x-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India" className="w-5 h-3" />
+                    <span className="text-sm text-gray-600">INR ₹</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </nav>
