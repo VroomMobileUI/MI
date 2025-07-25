@@ -43,12 +43,18 @@ export default function V1Luts() {
                 className="relative text-black"
                 onClick={() => window.location.href = '/cart'}
               >
-                <ShoppingCart size={20} />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
+                <div className="relative">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="m16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium">
+                      {cartCount}
+                    </span>
+                  )}
+                </div>
               </button>
             </div>
           </div>
@@ -70,41 +76,240 @@ export default function V1Luts() {
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="px-4 py-8">
-          <div className="max-w-sm mx-auto">
-            {isLoading ? (
-              <div className="grid grid-cols-2 gap-4">
-                {[...Array(4)].map((_, i) => (
-                  <Skeleton key={i} className="h-64 rounded-lg bg-gray-200" />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-4">
-                {v1Products.map((product, index) => (
-                  <motion.div
-                    key={product.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+        {/* SEE THE LOOKS Section */}
+        <div className="bg-black text-white py-16 px-4">
+          <div className="max-w-sm mx-auto text-center">
+            <h2 className="text-sm font-normal mb-4 tracking-[0.15em] uppercase">SEE THE LOOKS</h2>
+            <p className="text-gray-300 text-xs mb-8 leading-relaxed">
+              Explore the classic cinematic looks from the original V1 pack. (The % is the intensity of the LUT used for these specific clips)
+            </p>
+            
+            {/* LUT Sliders */}
+            <div className="space-y-8">
+              {/* 1. CLASSIC */}
+              <div>
+                <h3 className="text-white text-xs font-normal mb-4 tracking-[0.1em] uppercase">1. CLASSIC</h3>
+                <div className="relative w-full h-48 overflow-hidden cursor-ew-resize select-none">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="https://images.unsplash.com/photo-1469474968028-56623f02e42e"
+                      alt="Before"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      REC.709 + CORRECTION
+                    </div>
+                  </div>
+                  <div 
+                    className="absolute inset-0 overflow-hidden"
+                    style={{ clipPath: `inset(0 50% 0 0)` }}
                   >
-                    <MobileProductCard product={product} variant="grid" />
-                  </motion.div>
-                ))}
-                
-                {/* Add duplicate products to show more variety */}
-                {v1Products.map((product, index) => (
-                  <motion.div
-                    key={`${product.id}-duplicate`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: (index + v1Products.length) * 0.1 }}
-                  >
-                    <MobileProductCard product={{...product, id: `${product.id}-dup`, name: `${product.name} - Classic`}} variant="grid" />
-                  </motion.div>
-                ))}
+                    <img 
+                      src="https://images.unsplash.com/photo-1518709268805-4e9042af2176"
+                      alt="After"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      1. CLASSIC (75%)
+                    </div>
+                  </div>
+                  <div className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg left-1/2">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+                      <div className="flex space-x-0.5">
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            )}
+
+              {/* 2. VINTAGE */}
+              <div>
+                <h3 className="text-white text-xs font-normal mb-4 tracking-[0.1em] uppercase">2. VINTAGE</h3>
+                <div className="relative w-full h-48 overflow-hidden cursor-ew-resize select-none">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4"
+                      alt="Before"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      REC.709 + CORRECTION
+                    </div>
+                  </div>
+                  <div 
+                    className="absolute inset-0 overflow-hidden"
+                    style={{ clipPath: `inset(0 50% 0 0)` }}
+                  >
+                    <img 
+                      src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29"
+                      alt="After"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      2. VINTAGE (85%)
+                    </div>
+                  </div>
+                  <div className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg left-1/2">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+                      <div className="flex space-x-0.5">
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. CINEMATIC */}
+              <div>
+                <h3 className="text-white text-xs font-normal mb-4 tracking-[0.1em] uppercase">3. CINEMATIC</h3>
+                <div className="relative w-full h-48 overflow-hidden cursor-ew-resize select-none">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e"
+                      alt="Before"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      REC.709 + CORRECTION
+                    </div>
+                  </div>
+                  <div 
+                    className="absolute inset-0 overflow-hidden"
+                    style={{ clipPath: `inset(0 50% 0 0)` }}
+                  >
+                    <img 
+                      src="https://images.unsplash.com/photo-1547036967-23d11aacaee0"
+                      alt="After"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      3. CINEMATIC (90%)
+                    </div>
+                  </div>
+                  <div className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg left-1/2">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+                      <div className="flex space-x-0.5">
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. MOODY */}
+              <div>
+                <h3 className="text-white text-xs font-normal mb-4 tracking-[0.1em] uppercase">4. MOODY</h3>
+                <div className="relative w-full h-48 overflow-hidden cursor-ew-resize select-none">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e"
+                      alt="Before"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      REC.709 + CORRECTION
+                    </div>
+                  </div>
+                  <div 
+                    className="absolute inset-0 overflow-hidden"
+                    style={{ clipPath: `inset(0 50% 0 0)` }}
+                  >
+                    <img 
+                      src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07"
+                      alt="After"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      4. MOODY (80%)
+                    </div>
+                  </div>
+                  <div className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg left-1/2">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+                      <div className="flex space-x-0.5">
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 5. WARM */}
+              <div>
+                <h3 className="text-white text-xs font-normal mb-4 tracking-[0.1em] uppercase">5. WARM</h3>
+                <div className="relative w-full h-48 overflow-hidden cursor-ew-resize select-none">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5"
+                      alt="Before"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      REC.709 + CORRECTION
+                    </div>
+                  </div>
+                  <div 
+                    className="absolute inset-0 overflow-hidden"
+                    style={{ clipPath: `inset(0 50% 0 0)` }}
+                  >
+                    <img 
+                      src="https://images.unsplash.com/photo-1477511801984-4ad318ed9846"
+                      alt="After"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 text-xs font-normal tracking-[0.1em] uppercase">
+                      5. WARM (95%)
+                    </div>
+                  </div>
+                  <div className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg left-1/2">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+                      <div className="flex space-x-0.5">
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                        <div className="w-0.5 h-4 bg-gray-400"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* INSPIRED Section */}
+        <div className="py-16 px-4 bg-white">
+          <div className="max-w-sm mx-auto text-center">
+            <h2 className="text-black text-sm font-normal mb-8 tracking-[0.15em] uppercase">INSPIRED?</h2>
+            
+            <div className="grid grid-cols-2 gap-4">
+              {isLoading ? (
+                <>
+                  <Skeleton className="h-64 rounded-lg bg-gray-200" />
+                  <Skeleton className="h-64 rounded-lg bg-gray-200" />
+                </>
+              ) : (
+                <>
+                  {v1Products.map((product, index) => (
+                    <motion.div
+                      key={product.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                    >
+                      <MobileProductCard product={product} variant="grid" />
+                    </motion.div>
+                  ))}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
