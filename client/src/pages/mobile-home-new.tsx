@@ -4,6 +4,7 @@ import { X, ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import type { Product, Review } from "@shared/schema";
+import MobileBeforeAfterSlider from "@/components/mobile-before-after-slider";
 
 export default function MobileHome() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -237,41 +238,47 @@ export default function MobileHome() {
         {/* Before/After Section */}
         <div className="py-16 px-4 bg-white">
           <div className="max-w-sm mx-auto">
-            <div className="grid grid-cols-2 gap-1 mb-8">
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1518709268805-4e9042af2176"
-                  alt="Before" 
-                  className="w-full h-32 object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                  <span className="text-white text-xs font-normal tracking-[0.1em] uppercase">SLOG3</span>
-                </div>
-              </div>
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4"
-                  alt="After" 
-                  className="w-full h-32 object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-white text-xs font-normal tracking-[0.1em] uppercase mb-1">LUT 02 - SERENE</div>
-                    <div className="text-white text-xs font-normal tracking-[0.1em] uppercase">JAY V2 LUT PACK</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MobileBeforeAfterSlider 
+              images={[
+                {
+                  id: "1",
+                  beforeImage: "https://images.unsplash.com/photo-1518709268805-4e9042af2176",
+                  afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
+                  beforeLabel: "SLOG3",
+                  afterLabel: "LUT 02 - SERENE"
+                },
+                {
+                  id: "2", 
+                  beforeImage: "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
+                  afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
+                  beforeLabel: "RAW FOOTAGE",
+                  afterLabel: "JAY V2 LUT PACK"
+                },
+                {
+                  id: "3",
+                  beforeImage: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29", 
+                  afterImage: "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
+                  beforeLabel: "FLAT LOG",
+                  afterLabel: "CINEMATIC GRADE"
+                }
+              ]}
+            />
 
-            <div className="space-y-4">
+            <div className="space-y-4 mt-8">
               <div className="bg-black text-white py-12 px-4 text-center">
-                <Button className="bg-white text-black hover:bg-gray-100 px-6 py-2 text-xs font-normal tracking-[0.1em] uppercase rounded-none">
+                <Button 
+                  onClick={() => window.location.href = '/v2-luts'}
+                  className="bg-white text-black hover:bg-gray-100 px-6 py-2 text-xs font-normal tracking-[0.1em] uppercase rounded-none"
+                >
                   SEE ALL V2 LUTS
                 </Button>
               </div>
 
               <div className="bg-black text-white py-12 px-4 text-center">
-                <Button className="bg-white text-black hover:bg-gray-100 px-6 py-2 text-xs font-normal tracking-[0.1em] uppercase rounded-none">
+                <Button 
+                  onClick={() => window.location.href = '/v1-luts'}
+                  className="bg-white text-black hover:bg-gray-100 px-6 py-2 text-xs font-normal tracking-[0.1em] uppercase rounded-none"
+                >
                   SEE ALL V1 LUTS
                 </Button>
               </div>

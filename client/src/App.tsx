@@ -8,6 +8,8 @@ import Products from "@/pages/products";
 import ProductDetail from "@/pages/product-detail";
 import Cart from "@/pages/cart";
 import Checkout from "@/pages/checkout";
+import V2Luts from "@/pages/v2-luts";
+import V1Luts from "@/pages/v1-luts";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 
@@ -19,6 +21,8 @@ function Router() {
       <Route path="/product/:id" component={ProductDetail}/>
       <Route path="/cart" component={Cart}/>
       <Route path="/checkout" component={Checkout}/>
+      <Route path="/v2-luts" component={V2Luts}/>
+      <Route path="/v1-luts" component={V1Luts}/>
       <Route path="/desktop" component={Home}/>
       <Route component={NotFound} />
     </Switch>
