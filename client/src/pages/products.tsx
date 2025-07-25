@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, ShoppingCart, Search, Filter } from "lucide-react";
+import { Menu, X, ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -10,22 +10,9 @@ import MobileProductCard from "@/components/mobile-product-card";
 export default function Products() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartCount] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-
   const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products"]
   });
-
-  const categories = [
-    { id: "all", name: "All Products" },
-    { id: "luts", name: "LUT Packs" },
-    { id: "powergrade", name: "Powergrades" },
-    { id: "transitions", name: "Transitions" }
-  ];
-
-  const filteredProducts = products?.filter(product => 
-    selectedCategory === "all" || product.category === selectedCategory
-  ) || [];
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -114,38 +101,14 @@ export default function Products() {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-2xl font-bold tracking-wider mb-4"
+              className="text-sm font-normal tracking-[0.15em] uppercase mb-4"
             >
               DIGITAL PRODUCTS
             </motion.h1>
-            <p className="text-gray-600 text-sm">Professional video editing tools for creators</p>
           </div>
         </div>
 
-        {/* Category Filter */}
-        <div className="px-4 py-4 bg-white border-b border-gray-200">
-          <div className="max-w-md mx-auto">
-            <div className="flex items-center space-x-2 mb-4">
-              <Filter size={16} />
-              <span className="text-sm font-semibold">Filter by category</span>
-            </div>
-            <div className="flex space-x-2 overflow-x-auto">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
-                    selectedCategory === category.id
-                      ? 'bg-black text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+
 
         {/* Products Grid */}
         <div className="px-4 py-8">
@@ -158,7 +121,7 @@ export default function Products() {
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-4">
-                {filteredProducts.map((product, index) => (
+                {products && products.map((product, index) => (
                   <motion.div
                     key={product.id}
                     initial={{ opacity: 0, y: 20 }}
