@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Utsav%20Rai/Downloads/OneVisions-master/src/components/Home.tsx"],"sourcesContent":["{/* Image Comparison Slider */}\n          <div className=\"max-w-2xl mx-auto mb-8\" id=\"before-after\" style={{ scrollMarginTop: '80px' }}>\n            <iframe\n              src=\"/slider.html\"\n              title=\"Before After Slider\"\n              className=\"w-full aspect-video border-none rounded-lg shadow-lg\"\n              style={{ height: 'auto', minHeight: '300px' }}\n            ></iframe>\n\n          </div>\n"],"names":[],"mappings":";AAAA,CAA8B,eACpB,QAAC;IAAI,WAAU;IAAyB,IAAG;IAAe,OAAO;QAAE,iBAAiB;IAAO;cACzF,cAAA,QAAC;QACC,KAAI;QACJ,OAAM;QACN,WAAU;QACV,OAAO;YAAE,QAAQ;YAAQ,WAAW;QAAQ","debugId":null}},
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Utsav%20Rai/Downloads/OneVisions-master/src/app/page.tsx"],"sourcesContent":["\"use client\";\nimport React from \"react\";\nimport Home from \"@/components/Home\";\nexport default function Page() {\n  return <Home />;\n}\n"],"names":[],"mappings":";;;;AAEA;AAFA;;;AAGe,SAAS;IACtB,qBAAO,6LAAC,6HAAA,CAAA,UAAI;;;;;AACd;KAFwB","debugId":null}}]
+}

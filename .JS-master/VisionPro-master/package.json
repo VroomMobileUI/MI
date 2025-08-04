@@ -1,0 +1,8 @@
+{
+  "name": "visionpro-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd next-app && npm run dev"
+  }
+}

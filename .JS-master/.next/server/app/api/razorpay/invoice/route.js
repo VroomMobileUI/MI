@@ -1,0 +1,19 @@
+(()=>{var e={};e.id=884,e.ids=[884],e.modules={3295:e=>{"use strict";e.exports=require("next/dist/server/app-render/after-task-async-storage.external.js")},10846:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-page.runtime.prod.js")},21107:(e,t,o)=>{"use strict";o.r(t),o.d(t,{patchFetch:()=>c,routeModule:()=>d,serverHooks:()=>u,workAsyncStorage:()=>l,workUnitAsyncStorage:()=>m});var r={};o.r(r),o.d(r,{POST:()=>p});var s=o(96559),i=o(48088),n=o(37719),a=o(32190);async function p(e){let{email:t,amount:o,currency:r,product:s,invoiceId:i,paymentMethod:n}=await e.json();if(!t||!o||!r)return a.NextResponse.json({message:"Missing required fields"},{status:400});try{let e=process.env.BREVO_API_KEY;if(!e)throw Error("Brevo API key not set");let p=await fetch("https://api.brevo.com/v3/smtp/email",{method:"POST",headers:{"api-key":e,"Content-Type":"application/json"},body:JSON.stringify({sender:{name:"Vroom Visions",email:"vroomvisionsx@gmail.com"},to:[{email:t}],subject:"Your Invoice from Vroom Visions",htmlContent:(()=>{let e=new Date,t=e.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});return`<div style="background:#18181b;padding:32px 0;font-family:sans-serif;color:#fff;text-align:center;">
+            <div style="font-weight:bold;font-size:2rem;display:block;margin-bottom:12px;">
+              <span style='color:#fff;display:inline-block;'>Vroom</span>
+              <span style='color:#b993f7;display:inline-block;'>Visions</span>
+              <span style='color:#a855f7;display:inline-block;'>X</span>
+            </div>
+            <h1 style="font-size:1.3rem;font-weight:700;margin-bottom:8px;">Thank You for Your Purchase!</h1>
+            <div style="background:#232136;margin:24px auto 16px auto;padding:24px 16px;border-radius:12px;max-width:400px;text-align:left;box-shadow:0 0 12px #a855f7;">
+              <div style="margin-bottom:10px;"><b>Product:</b> ${s||"Vroom Visions Product"}</div>
+              <div style="margin-bottom:10px;"><b>Amount:</b> ${(o/100).toFixed(2)} ${r}</div>
+              <div style="margin-bottom:10px;"><b>Invoice ID:</b> ${i||"Auto-generated"}</div>
+              <div style="margin-bottom:10px;"><b>Date:</b> ${t}</div>
+              <div style="margin-bottom:10px;"><b>Payment Method:</b> ${n||"Online"}</div>
+            </div>
+            <div style="margin-top:24px;font-size:0.95rem;color:#bdbdbd;">
+              Need help? Contact <a href="mailto:support@vroomvisions.com" style="color:#a855f7;">support@vroomvisions.com</a><br>
+              &copy; ${e.getFullYear()} Vroom Visions X. All rights reserved.
+            </div>
+          </div>`})()})});if(!p.ok){let e=await p.json();throw Error(e.message||"Failed to send email")}return a.NextResponse.json({message:"Invoice email sent"},{status:200})}catch(e){return a.NextResponse.json({message:e.message||"Failed to send invoice email"},{status:500})}}let d=new s.AppRouteRouteModule({definition:{kind:i.RouteKind.APP_ROUTE,page:"/api/razorpay/invoice/route",pathname:"/api/razorpay/invoice",filename:"route",bundlePath:"app/api/razorpay/invoice/route"},resolvedPagePath:"/workspaces/OneVisions/src/app/api/razorpay/invoice/route.ts",nextConfigOutput:"",userland:r}),{workAsyncStorage:l,workUnitAsyncStorage:m,serverHooks:u}=d;function c(){return(0,n.patchFetch)({workAsyncStorage:l,workUnitAsyncStorage:m})}},29294:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-async-storage.external.js")},44870:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-route.runtime.prod.js")},63033:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-unit-async-storage.external.js")},78335:()=>{},96487:()=>{}};var t=require("../../../../webpack-runtime.js");t.C(e);var o=e=>t(t.s=e),r=t.X(0,[447,580],()=>o(21107));module.exports=r})();

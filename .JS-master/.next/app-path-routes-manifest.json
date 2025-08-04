@@ -1,0 +1,18 @@
+{
+  "/api/auth/token/route": "/api/auth/token",
+  "/api/paypal/create-order/route": "/api/paypal/create-order",
+  "/api/products/[slug]/route": "/api/products/[slug]",
+  "/api/products/route": "/api/products",
+  "/api/razorpay/create-order/route": "/api/razorpay/create-order",
+  "/api/razorpay/invoice/route": "/api/razorpay/invoice",
+  "/api/razorpay/order/route": "/api/razorpay/order",
+  "/api/reviews/route": "/api/reviews",
+  "/favicon.ico/route": "/favicon.ico",
+  "/_not-found/page": "/_not-found",
+  "/cart/page": "/cart",
+  "/checkout/page": "/checkout",
+  "/page": "/",
+  "/products/[slug]/page": "/products/[slug]",
+  "/payment-success/page": "/payment-success",
+  "/products/page": "/products"
+}
