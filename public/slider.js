@@ -4,46 +4,65 @@ VanillaTilt.init(document.querySelector("#image-comparison-slider"), {
     scale: 1.02
 });
 
+
 const slider = document.querySelector("#image-comparison-slider");
 const sliderImgWrapper = document.querySelector("#image-comparison-slider .img-wrapper");
 const sliderHandle = document.querySelector("#image-comparison-slider .handle");
+const sliderPopup = document.querySelector("#image-comparison-slider .slider-popup"); // If you have a popup/tooltip element
 
-slider.addEventListener("mousemove", sliderMouseMove);
-slider.addEventListener("touchmove", sliderMouseMove);
+let isDragging = false;
 
-function sliderMouseMove(event) {
+slider.addEventListener("mousedown", startDrag);
+slider.addEventListener("touchstart", startDrag);
+slider.addEventListener("mousemove", onDrag);
+slider.addEventListener("touchmove", onDrag);
+slider.addEventListener("mouseup", stopDrag);
+slider.addEventListener("touchend", stopDrag);
+slider.addEventListener("mouseleave", stopDrag);
 
-    if (isSliderLocked) return;
 
-    const sliderLeftX = slider.offsetLeft;
+function updateSlider(mouseX) {
     const sliderWidth = slider.clientWidth;
     const sliderHandleWidth = sliderHandle.clientWidth;
-
-    let mouseX = (event.clientX || event.touches[0].clientX) - sliderLeftX;
     if (mouseX < 0) mouseX = 0;
     else if (mouseX > sliderWidth) mouseX = sliderWidth;
-
     sliderImgWrapper.style.width = `${((1 - mouseX / sliderWidth) * 100).toFixed(4)}%`;
     sliderHandle.style.left = `calc(${((mouseX / sliderWidth) * 100).toFixed(4)}% - ${sliderHandleWidth / 2}px)`;
+    // Always show popup/tooltip above handle, both desktop and mobile
+    if (sliderPopup) {
+        sliderPopup.style.display = 'block';
+        sliderPopup.style.left = `calc(${((mouseX / sliderWidth) * 100).toFixed(4)}% - 50px)`;
+        // Adjust -50px to half popup width for perfect centering
+    }
 }
 
-let isSliderLocked = false;
-
-slider.addEventListener("mousedown", sliderMouseDown);
-slider.addEventListener("touchstart", sliderMouseDown);
-slider.addEventListener("mouseup", sliderMouseUp);
-slider.addEventListener("touchend", sliderMouseUp);
-slider.addEventListener("mouseleave", sliderMouseLeave);
-
-function sliderMouseDown(event) {
-    if (isSliderLocked) isSliderLocked = false;
-    sliderMouseMove(event);
+function onDrag(event) {
+    let mouseX;
+    if (event.touches) {
+        mouseX = event.touches[0].clientX - slider.offsetLeft;
+    } else {
+        mouseX = event.clientX - slider.offsetLeft;
+    }
+    if (!isDragging && event.type.startsWith('mouse')) return;
+    updateSlider(mouseX);
 }
 
-function sliderMouseUp() {
-    if (!isSliderLocked) isSliderLocked = true;
+function startDrag(event) {
+    isDragging = true;
+    onDrag(event);
+    // Prevent scrolling on touch
+    if (event.type === 'touchstart') event.preventDefault();
 }
 
-function sliderMouseLeave() {
-    if (isSliderLocked) isSliderLocked = false;
+function stopDrag() {
+    isDragging = false;
+    // Do not hide popup, keep it visible always
 }
+
+// On load, set popup position to initial handle position
+window.addEventListener('DOMContentLoaded', () => {
+    const sliderWidth = slider.clientWidth;
+    // Default to middle
+    let mouseX = sliderWidth / 2;
+    updateSlider(mouseX);
+});

@@ -75,7 +75,7 @@ const Home: React.FC = () => {
             <iframe
               src="/slider.html"
               title="Before After Slider"
-              className="w-full aspect-video border-none rounded-lg shadow-lg"
+              className="w-full aspect-video border-none rounded-lg"
               style={{ height: 'auto', minHeight: '300px' }}
             ></iframe>
             <p className="text-center mt-3 text-gray-400">
